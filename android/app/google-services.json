@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "424746431232",
+    "project_id": "cloud-mm-vdo-short",
+    "storage_bucket": "cloud-mm-vdo-short.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424746431232:android:f3d9672ee842557fa1b9e5",
+        "android_client_info": {
+          "package_name": "com.example.cloud_mm_vdo_short"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424746431232-8v7sk4okr2p03e5u8s3s27iuf0pj4org.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBVGxaPYumo9r-r2kQKWEDOyFOMKQtRh3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424746431232-8v7sk4okr2p03e5u8s3s27iuf0pj4org.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
