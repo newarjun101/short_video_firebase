@@ -3,7 +3,6 @@ import 'package:cloud_mm_vdo_short/controller/home_controller.dart';
 import 'package:cloud_mm_vdo_short/di/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'build_video_player_widget.dart';
 
 class HomeScreen extends StatelessWidget {

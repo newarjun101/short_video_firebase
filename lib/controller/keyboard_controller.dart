@@ -12,7 +12,7 @@ class KeyboardController extends ChangeNotifier {
           ? await platform.invokeMethod('getUpButton')
           : await platform.invokeMethod('getDownButton');
 
-      value = isUp==true? result+10 : result-10;
+      value = isUp == true ? result + 10 : result - 10;
       print(value);
     } on PlatformException catch (e) {}
 
