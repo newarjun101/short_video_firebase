@@ -31,10 +31,11 @@ class AddVideoScreen extends StatelessWidget {
                     ? const TextView(title: "NO Vidoe", fontSize: kMediumFont14)
                     : SizedBox(
                         width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height / 1.5,
+                        height: MediaQuery.of(context).size.height / 1.8,
                         child: VideoPlayer(addVideoController.controller),
                       );
               }),
+
               const SizedBox(
                 height: 30,
               ),
@@ -52,9 +53,11 @@ class AddVideoScreen extends StatelessWidget {
                       : "Upload Video",
                   onClick: () {
                     if (addVideoCtl.hasVideo == true) {
-                      addVideoController.upload(context : context);
+                      addVideoController.upload(context: context);
 
-                    } else {
+
+
+                      } else {
                       showOptionsDialog(context, addVideoController);
                     }
                   },

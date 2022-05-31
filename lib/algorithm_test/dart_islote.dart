@@ -4,7 +4,7 @@ void dartIsolateTest() async {
   final receivePort = ReceivePort();
   // 2
   final isolate = await Isolate.spawn(
-    downloadAndCompressTheInternet,
+    dowloadAndCompressTheInternet,
     receivePort.sendPort,
   );
   receivePort.listen((message) {
@@ -14,6 +14,6 @@ void dartIsolateTest() async {
   });
 }
 
-void downloadAndCompressTheInternet(SendPort sendPort) {
+void dowloadAndCompressTheInternet(SendPort sendPort) {
   sendPort.send(42);
 }

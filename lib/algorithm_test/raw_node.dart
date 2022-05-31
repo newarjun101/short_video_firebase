@@ -21,6 +21,5 @@ class TreeItems {
     for (int i = 0; i < node.children!.length; i++) {
       _addInOrder(node.children![i]);
     }
-    for (final child in node.children!) {}
   }
 }

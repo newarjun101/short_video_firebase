@@ -2,8 +2,9 @@ import 'package:cloud_mm_vdo_short/util/font_and_margin.dart';
 import 'package:cloud_mm_vdo_short/view/reusable_widget/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../algorith_test/raw_node.dart';
-import '../../../algorith_test/test_data.dart';
+
+import '../../../algorithm_test/test_data.dart';
+import '../../../algorithm_test/raw_node.dart';
 
 class InboxScreen extends StatelessWidget {
   const InboxScreen({Key? key}) : super(key: key);

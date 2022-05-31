@@ -1,4 +1,4 @@
-package com.example.cloud_mm_vdo_short
+package com.aj.cloud_mm_vdo_short
 
 
 import android.content.Context
@@ -15,7 +15,7 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
 class MainActivity : FlutterActivity() {
-    private val CHANNEL = "samples.flutter.dev/battery"
+    private val CHANNEL = "KEYBOARD"
     private var value: Int = 240
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
@@ -29,17 +29,6 @@ class MainActivity : FlutterActivity() {
                 "getDownButton"-> result.success(downButton())
                 else ->  result.notImplemented()
             }
-          /*  if (call.method == "getUpButton") {
-                ///  val batteryLevel = getBatteryLevel()
-                // getBatteryLevel
-
-                result.success(upButton())
-            }
-
-            else {
-                println("got error")
-                result.notImplemented()
-            }*/
         }
 
     }

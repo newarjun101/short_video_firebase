@@ -3,6 +3,7 @@ import 'package:cloud_mm_vdo_short/controller/home_controller.dart';
 import 'package:cloud_mm_vdo_short/di/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'build_video_player_widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,7 +25,10 @@ class HomeScreen extends StatelessWidget {
           create: (_) => homeVm,
           child: Consumer<HomeController>(builder: (_, vm, __) {
             return vm.isLoading == true
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ))
                 : PageView.builder(
                     itemCount: vm.mVideoList.length,
                     scrollDirection: Axis.vertical,

@@ -16,6 +16,9 @@ class DiscoverScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         centerTitle: true,
       ),
+      body: Center(
+        child: TextView(title: "Coming Soon",fontSize: kLargeFont16.sp,fontWeight: FontWeight.bold,),
+      ),
     );
   }
 }

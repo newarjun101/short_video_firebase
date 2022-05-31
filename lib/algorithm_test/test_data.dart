@@ -1,4 +1,5 @@
-import 'package:cloud_mm_vdo_short/algorith_test/raw_node.dart';
+
+import '../algorithm_test/raw_node.dart';
 
 final treeOne = RawNode(data : 1, children: [
    RawNode(data : 4, children: [

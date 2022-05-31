@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 
 class BottomNavMainController extends ChangeNotifier {
-  int index = 1;
+  int index = 0;
 
   BottomNavMainController() {}
 

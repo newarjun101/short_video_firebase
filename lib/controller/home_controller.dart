@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeController extends ChangeNotifier {
@@ -9,6 +10,8 @@ class HomeController extends ChangeNotifier {
   final fireStore = FirebaseFirestore.instance;
 
   bool isLoading = false;
+  final RefreshController refreshController =
+      RefreshController(initialRefresh: false);
 
   int number = 0;
 
@@ -21,25 +24,34 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<void> getVideo() async {
+    mVideoList.clear();
     isLoading = true;
-    print("testing");
+
     QuerySnapshot data = await fireStore.collection("videos").get();
 
     try {
       QuerySnapshot data = await fireStore.collection("videos").get();
-      mVideoList = data.docs
-          .map((doc) => doc["url"].toString())
-          .toList();
+      mVideoList = data.docs.map((doc) => doc["url"].toString()).toList();
       isLoading = false;
     } on FirebaseException catch (error) {
       print("error");
-      isLoading = false;
+      isLoading = true;
     } catch (e) {
-      print("hahah");
-      isLoading = false;
+      isLoading = true;
     }
 
     //  final allData = data.docs.map((doc) => doc.data()).toList();
+    notifyListeners();
+  }
+
+  onRefresh() async {
+    mVideoList.clear();
+
+    print("laoding");
+
+    await getVideo();
+
+    refreshController.refreshCompleted();
     notifyListeners();
   }
 }
