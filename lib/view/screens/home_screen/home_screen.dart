@@ -24,7 +24,10 @@ class HomeScreen extends StatelessWidget {
           create: (_) => homeVm,
           child: Consumer<HomeController>(builder: (_, vm, __) {
             return vm.isLoading == true
-                ? const Center(child: CircularProgressIndicator())
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ))
                 : PageView.builder(
                     itemCount: vm.mVideoList.length,
                     scrollDirection: Axis.vertical,

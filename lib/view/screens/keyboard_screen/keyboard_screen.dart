@@ -1,8 +1,6 @@
 import 'package:cloud_mm_vdo_short/controller/home_controller.dart';
 import 'package:cloud_mm_vdo_short/controller/keyboard_controller.dart';
 import 'package:cloud_mm_vdo_short/di/locator.dart';
-import 'package:cloud_mm_vdo_short/util/font_and_margin.dart';
-import 'package:cloud_mm_vdo_short/view/reusable_widget/custom_button.dart';
 import 'package:cloud_mm_vdo_short/view/reusable_widget/text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,10 +13,11 @@ class KeyboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final keyboardController = locator.get<KeyboardController>();
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         elevation: 4,
-        title: Text("Keyboard Screen"),
+        title: const Text("Keyboard Screen"),
         centerTitle: true,
       ),
       body: ChangeNotifierProvider(
@@ -29,19 +28,20 @@ class KeyboardScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Flexible(
-                child: Consumer<KeyboardController>(builder: (_, keyboardCtrl, __) {
+              Expanded(
+                child: Consumer<KeyboardController>(
+                    builder: (_, keyboardCtrl, __) {
                   return ListView(
                     children: [
                       Center(
                         child: AnimatedContainer(
-                          height :keyboardCtrl.value.toDouble(),
-                          duration: Duration(microseconds: 500),),
+                          height: keyboardCtrl.value.toDouble(),
+                          duration: const Duration(microseconds: 500),
+                        ),
                       ),
                       SizedBox(
                           height: 120.h,
                           child: Image.asset("assets/images/rocket.png")),
-
                     ],
                   );
                 }),
@@ -53,11 +53,17 @@ class KeyboardScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     GestureDetector(
-                      onTap: () => keyboardController.actionOnClick(isUp: false),
-                      child: TextView(
-                        title: "Up",
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
+                      onTap: () =>
+                          keyboardController.actionOnClick(isUp: false),
+                      child: SizedBox(
+                        width: 200,
+                        height: 60,
+                        child: TextView(
+                          title: "Up",
+                          fontSize: 24.sp,
+                          textAlign: TextAlign.center,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                     const VerticalDivider(
@@ -65,10 +71,15 @@ class KeyboardScreen extends StatelessWidget {
                     ),
                     GestureDetector(
                       onTap: () => keyboardController.actionOnClick(isUp: true),
-                      child: TextView(
-                        title: "Down",
-                        fontSize: 24.sp,
-                        fontWeight: FontWeight.bold,
+                      child: SizedBox(
+                        width: 200,
+                        height: 60,
+                        child: TextView(
+                          title: "Down",
+                          textAlign: TextAlign.center,
+                          fontSize: 24.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],

@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_mm_vdo_short/controller/bottom_nav_main_controller.dart';
+import 'package:cloud_mm_vdo_short/controller/home_controller.dart';
+import 'package:cloud_mm_vdo_short/di/locator.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +16,7 @@ class AddVideoController extends ChangeNotifier {
   late dynamic video = "";
   bool hasVideo = false;
   bool isLoading = false;
+  bool isSuccess = false;
   late VideoPlayerController controller;
   FirebaseStorage storage = FirebaseStorage.instance;
   final fireStore = FirebaseFirestore.instance;
@@ -32,11 +36,14 @@ class AddVideoController extends ChangeNotifier {
 
   Future<void> upload({String? description, context}) async {
     isLoading = true;
+    isSuccess = false;
     showDialog(
       context: context,
       builder: (_) {
-        return const Expanded(
-          child: SimpleDialog(
+        return SizedBox(
+          width: MediaQuery.of(context).size.width / 1.3,
+          height: 150,
+          child: const SimpleDialog(
             title: Center(child: Text('Loading')),
             children: [
               Center(
@@ -63,16 +70,22 @@ class AddVideoController extends ChangeNotifier {
                 }));
         isLoading = false;
         if (snapshot.state == TaskState.success) {
-          isLoading = false;
           final String downloadUrl = await snapshot.ref.getDownloadURL();
           await fireStore
               .collection("videos")
               .add({"url": downloadUrl, "name": "imageName"});
+          isLoading = false;
+          isSuccess = true;
+          videoFile.delete();
 
+          controller.dispose();
           video = "";
           hasVideo = false;
-        } else {}
-
+        } else {
+          isLoading = false;
+        }
+        locator.get<HomeController>().getVideo();
+        locator.get<BottomNavMainController>().onNavBarItemTapped(0);
         // Refresh the UI
       } on FirebaseException catch (error) {
         if (kDebugMode) {
@@ -90,19 +103,10 @@ class AddVideoController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> getVideo() async {
-    print("testing");
-    QuerySnapshot data = await fireStore.collection("videos").get();
-
-    final allData = data.docs.map((doc) => doc.data()).toList();
-    print(allData);
-  }
-
   deleteVideo() {
-
+    controller.dispose();
     video = "";
     hasVideo = false;
     notifyListeners();
   }
-
 }

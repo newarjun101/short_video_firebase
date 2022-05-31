@@ -24,7 +24,7 @@ class ButtonNavMain extends StatelessWidget {
           backgroundColor: Colors.black.withOpacity(0.1),
           body: IndexedStack(
             index: bottomNavMainController.index,
-            children: [
+            children:const [
               HomeScreen(),
               DiscoverScreen(),
               AddVideoScreen(),

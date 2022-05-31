@@ -10,6 +10,7 @@ class HomeController extends ChangeNotifier {
 
   bool isLoading = false;
 
+
   int number = 0;
 
   HomeController() {
@@ -21,25 +22,25 @@ class HomeController extends ChangeNotifier {
   }
 
   Future<void> getVideo() async {
+    mVideoList.clear();
     isLoading = true;
-    print("testing");
+
     QuerySnapshot data = await fireStore.collection("videos").get();
 
     try {
       QuerySnapshot data = await fireStore.collection("videos").get();
-      mVideoList = data.docs
-          .map((doc) => doc["url"].toString())
-          .toList();
+      mVideoList = data.docs.map((doc) => doc["url"].toString()).toList();
       isLoading = false;
     } on FirebaseException catch (error) {
       print("error");
-      isLoading = false;
+      isLoading = true;
     } catch (e) {
-      print("hahah");
-      isLoading = false;
+      isLoading = true;
     }
 
     //  final allData = data.docs.map((doc) => doc.data()).toList();
     notifyListeners();
   }
+
+
 }
